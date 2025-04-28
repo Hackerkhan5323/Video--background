@@ -3,210 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Advanced online video background removal tool with multiple editing features and effects">
-      <meta name="keywords" content="video background remove">
-    <meta name="khan" content="video background remove">
-    <meta property="og:title" content="vide background remove">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://videobackgroundremove.index.htmlcom">
-    <title>AI Video Background Remover Pro | Advanced Editing Tools</title>
+    <meta property="og:url" content="https://videobackgroundremoval.index.htmlcom">
     
-    <!-- SEO Meta Tags -->
-    <meta name="keywords" content="video background remover, video editing, AI video tools, video effects">
-    <meta property="og:title" content="AI Video Background Remover Pro">
-    <meta property="og:description" content="Professional video background removal and editing tool with AI capabilities">
-    
-    <!-- AdSense Code (Replace with your Ad Unit ID) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_UNIT_ID"
-    crossorigin="anonymous"></script>
+    <title>VidMagic Pro | Advanced Video Background Removal & Editing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Base Styles */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: #f0f2f5;
+            background: #0f172a;
+            color: #ffffff;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Video Editor Section */
-        .editor-container {
-            position: relative;
+        /* Header Styles */
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
             width: 100%;
-            height: 70vh;
-            background: #1a1a1a;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        #videoCanvas {
-            position: absolute;
             top: 0;
-            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Controls Panel */
-        .controls-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-            padding: 15px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #38bdf8;
         }
 
-        .control-group {
-            padding: 10px;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        /* Ad Sections */
-        .ad-section {
-            margin: 20px 0;
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 100px;
             text-align: center;
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: #38bdf8;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 5rem 5%;
+            background: #1e293b;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #0f172a;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #38bdf8;
+            margin-bottom: 1rem;
+        }
+
+        /* 3D Model Preview Section */
+        .model-preview {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .model-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 300px;
+            background: #1e293b;
+            transition: transform 0.3s;
+        }
+
+        .model-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Video Demo Section */
+        .video-demo {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #0f172a;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 5%;
+            background: #1e293b;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .price-card {
+            background: #0f172a;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .price-card.pro {
+            border: 2px solid #38bdf8;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 5rem 5%;
+            background: #0f172a;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .controls-panel {
-                grid-template-columns: 1fr;
+            .nav-links {
+                display: none;
             }
-            
-            .editor-container {
-                height: 50vh;
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Ad -->
-    <div class="ad-section">
-        <!-- AdSense Header Ad -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_AD_UNIT_ID"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-    </div>
+    <header class="header">
+        <div class="logo">VidMagic Pro</div>
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#templates">Templates</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-    <div class="container">
-        <h1>AI Video Background Remover Pro</h1>
-        
-        <div class="editor-container">
-            <video id="inputVideo" hidden></video>
-            <canvas id="videoCanvas"></canvas>
+    <section class="hero">
+        <h1>Transform Your Videos with AI Magic</h1>
+        <p>Remove backgrounds, add stunning effects, and create professional videos in minutes</p>
+        <a href="#" class="cta-button">Start Editing for Free</a>
+        <div class="animated-text">
+            <span>5000+ Video Effects</span>
+            <span>1000+ 3D Elements</span>
+            <span>AI-Powered Tools</span>
         </div>
+    </section>
 
-        <div class="controls-panel">
-            <div class="control-group">
-                <label>Processing Level:</label>
-                <select id="processingLevel">
-                    <option value="low">Low (Fast)</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High (Quality)</option>
-                </select>
+    <section class="features" id="features">
+        <h2>Powerful Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-magic feature-icon"></i>
+                <h3>AI Background Removal</h3>
+                <p>Instant background removal with advanced AI technology</p>
             </div>
-
-            <div class="control-group">
-                <label>Background Options:</label>
-                <select id="backgroundOptions">
-                    <option value="none">Remove Background</option>
-                    <option value="image">Add Image</option>
-                    <option value="video">Add Video</option>
-                    <option value="effects">Special Effects</option>
-                </select>
+            <div class="feature-card">
+                <i class="fas fa-cube feature-icon"></i>
+                <h3>3D Model Integration</h3>
+                <p>Add and animate 3D models directly in your videos</p>
             </div>
-
-            <div class="control-group">
-                <button id="addText">Add Text</button>
-                <button id="add3DModel">Add 3D Object</button>
+            <div class="feature-card">
+                <i class="fas fa-snowflake feature-icon"></i>
+                <h3>Special Effects</h3>
+                <p>2000+ effects including snow, rain, fire, and more</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Footer Ad -->
-    <div class="ad-section">
-        <!-- AdSense Footer Ad -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_AD_UNIT_ID"
-             data-ad-slot="0987654321"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-    </div>
+    <section class="model-preview" id="templates">
+        <h2>3D Elements & Templates</h2>
+        <div class="model-grid">
+            <div class="model-item"></div>
+            <div class="model-item"></div>
+            <div class="model-item"></div>
+            <div class="model-item"></div>
+        </div>
+    </section>
 
-    <script>
-        // Video Processing Core
-        let videoStream;
-        const videoElement = document.getElementById('inputVideo');
-        const canvasElement = document.getElementById('videoCanvas');
-        const ctx = canvasElement.getContext('2d');
+    <section class="video-demo">
+        <h2>See It in Action</h2>
+        <div class="demo-container">
+            <!-- Add video embed code here -->
+        </div>
+    </section>
 
-        // Initialize Video Processing
-        async function initVideoProcessing() {
-            try {
-                videoStream = await navigator.mediaDevices.getUserMedia({ video: true });
-                videoElement.srcObject = videoStream;
-                videoElement.play();
-                processVideo();
-            } catch (err) {
-                console.error('Error accessing camera:', err);
-            }
-        }
+    <section class="pricing" id="pricing">
+        <h2>Simple Pricing</h2>
+        <div class="pricing-cards">
+            <div class="price-card">
+                <h3>Free</h3>
+                <p class="price">$0<span>/month</span></p>
+                <ul>
+                    <li>Basic Editing Tools</li>
+                    <li>10 Standard Effects</li>
+                    <li>720p Exports</li>
+                </ul>
+            </div>
+            <div class="price-card pro">
+                <h3>Pro</h3>
+                <p class="price">$29<span>/month</span></p>
+                <ul>
+                    <li>All Premium Features</li>
+                    <li>Unlimited Effects</li>
+                    <li>4K Exports</li>
+                </ul>
+            </div>
+            <div class="price-card">
+                <h3>Business</h3>
+                <p class="price">$99<span>/month</span></p>
+                <ul>
+                    <li>Team Collaboration</li>
+                    <li>Priority Support</li>
+                    <li>Custom Templates</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-        // Video Processing Loop
-        function processVideo() {
-            // Basic background removal example (replace with AI model)
-            ctx.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
-            const imageData = ctx.getImageData(0, 0, canvasElement.width, canvasElement.height);
-            // Add background removal logic here
-            ctx.putImageData(imageData, 0, 0);
-            requestAnimationFrame(processVideo);
-        }
-
-        // UI Event Listeners
-        document.getElementById('addText').addEventListener('click', () => {
-            // Text overlay implementation
-            const text = prompt('Enter text:');
-            if (text) {
-                ctx.font = '20px Arial';
-                ctx.fillStyle = 'white';
-                ctx.fillText(text, 10, 50);
-            }
-        });
-
-        // Initialize
-        window.addEventListener('load', () => {
-            initVideoProcessing();
-            // Initialize AdSense
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        });
-
-        // Responsive Canvas
-        function resizeCanvas() {
-            canvasElement.width = videoElement.videoWidth;
-            canvasElement.height = videoElement.videoHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-    </script>
-
-    <!-- AI/ML Libraries (Example using TensorFlow.js) -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0.0"></script>
-
-    <!-- 3D Library (Example using Three.js) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <footer class="footer">
+        <div class="footer-section">
+            <h4>VidMagic Pro</h4>
+            <p>Transform your video editing experience with AI-powered tools</p>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="#">About Us</a>
+            <a href="#">Blog</a>
+            <a href="#">Support</a>
+        </div>
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+        </div>
+    </footer>
 </body>
-      </html>
+</html>
