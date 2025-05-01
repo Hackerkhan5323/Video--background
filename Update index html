@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Editor with 3D Models & Templates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Add your existing CSS styles here */
+
+        .gallery-section {
+            display: none;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: 5% auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add your existing header and other sections -->
+
+    <div class="container">
+        <!-- 3D Models Section -->
+        <button class="cta-button" onclick="toggleGallery('3d-models')">
+            <i class="fas fa-cube"></i> 3D Models
+        </button>
+
+        <div id="3d-models" class="gallery-section">
+            <h3>3D Model Gallery</h3>
+            <div class="gallery-grid">
+                <!-- 3D Model Items -->
+                <div class="gallery-item" onclick="openModel('model1')">
+                    <img src="placeholder-3d-1.jpg" alt="3D Model 1">
+                    <div class="item-label">Character Model</div>
+                </div>
+                <!-- Add more 3D model items -->
+            </div>
+        </div>
+
+        <!-- Video Templates Section -->
+        <button class="cta-button" onclick="toggleGallery('video-templates')">
+            <i class="fas fa-film"></i> Video Templates
+        </button>
+
+        <div id="video-templates" class="gallery-section">
+            <h3>Video Template Gallery</h3>
+            <div class="gallery-grid">
+                <!-- Video Template Items -->
+                <div class="gallery-item" onclick="openTemplate('template1')">
+                    <img src="placeholder-video-1.jpg" alt="Video Template 1">
+                    <div class="item-label">Snow Effect</div>
+                </div>
+                <!-- Add more video template items -->
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="previewModal" class="modal">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-content" id="modalContent">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle gallery visibility
+        function toggleGallery(galleryId) {
+            const galleries = document.querySelectorAll('.gallery-section');
+            galleries.forEach(gallery => {
+                gallery.style.display = 'none';
+            });
+            
+            const selectedGallery = document.getElementById(galleryId);
+            selectedGallery.style.display = 'block';
+        }
+
+        // Open 3D model/video template
+        function openModel(modelId) {
+            const modal = document.getElementById('previewModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Replace this with actual model content
+            modalContent.innerHTML = `
+                <h2>${modelId}</h2>
+                <div style="width: 100%; height: 400px; background: #eee;">
+                    3D Model Preview Area
+                </div>
+                <button class="cta-button" onclick="insertModel('${modelId}')">
+                    Insert Model
+                </button>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        function openTemplate(templateId) {
+            const modal = document.getElementById('previewModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Replace this with actual video template content
+            modalContent.innerHTML = `
+                <h2>${templateId}</h2>
+                <video controls style="width: 100%">
+                    <source src="sample.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="cta-button" onclick="insertTemplate('${templateId}')">
+                    Use Template
+                </button>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        // Insert selected model/template
+        function insertModel(modelId) {
+            console.log(`Inserting model: ${modelId}`);
+            closeModal();
+            // Add your model insertion logic here
+        }
+
+        function insertTemplate(templateId) {
+            console.log(`Inserting template: ${templateId}`);
+            closeModal();
+            // Add your template insertion logic here
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('previewModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
