@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>89B47C57-F3F2-47F7-BB41-390C5DB09CBE</packageid>
+	<name>Lightroom</name>
+	<version>6.6.0.611</version>
+	<target_location>/Components/Lightroom/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>Lightroom</name>
+			<assets_size>2385827</assets_size>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvLz4=</validation_xml>
+				<sig>t1B/3brdRS5v6DAkah17saepAHkLgB0WPqrUNqTDYhk7bGsvNqSOH/KT71Sx3b7gT6z69R4xDm1JaLX89f7xFQsH+TnvdMCgyXPBDkWDKUaLnfIQAFOwCLtodwCFNlMa48ts6ssK1i732Q/tXO23jSR+y+vlxeCMMJGvWZspVe0nUe9uP2n7pgAgj42PYqDBuQemqCM4x6qTQ8yzME+UxsAOC0kRnHaeT1e2ZsVqb14TdCJsHW3l64dGaT89OdlMLWXrQ3KCAzEcDErETOAkCMkUIQnOjgt272bvY6bTE21hrgf/LmfUsN6An49g4uEOM2ncR5S8Z7tZzsn1gzcgoGyGvxf3BLVMJ2iuikJpC3WLif3l6iJqUWsjac0v8AHCst0CVL2cL24n+OD8EfUETi8LMimPGbEUY8cGhIDrX2d6PmpbZcTrRIeFbW1s2eRGkRhWrn9TJ3EvRTpMiv1Dl49sBKGfmGjMnlzPzk5vnRrHBlqxk2IWfQiGLDZavMR2</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>

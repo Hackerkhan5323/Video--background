@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>9A3B09B2-57CA-451C-A09A-754EA2830303</packageid>
+	<name>Discover</name>
+	<version>6.6.0.611</version>
+	<target_location>/Components/Discover/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>Discover</name>
+			<assets_size>1560960</assets_size>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvLz4=</validation_xml>
+				<sig>jZu889aod0rThc3IzhmmSTKw4+Zsd7w4i58wk8cBSoZ+tg7NvVnv64DZRj8C47zS1su1AbfREA5iRg02rSYYm6q5Y4jrRxiXzaEf97RjysFJnLuKLlHW9CmZ3A0tQ8C5up3E9o8h9MHezaza4ZZmLr6khBxxyQh3gtu0qp4LpT2SCOmo9Aw2r8vr77uyN7Sk8k4b78PPSRTgdOjLsO1cqqtcUlokVCXTvpVEWkJmlyopEtr+qzFAN84WBVi+gZrdt+EXjWptzXA5JT85lpMogLyRzT1ewVHzSc9zPt4gePcneYQ4jPOz39FedX3QM/l3n2SvnUXevszdc9G28f/21XZrQaCEvEEPrAlP5hIGSTiei5gE9eO8BlvCv5Ok/4CVlI/XLT0J0FVoUILNA500tka35DiKcYcDSLBTQFPuNv7IlEPrIPtRjZwJrhlskVv2/93x8VpYKmgymjt7iiaN07VoHl2zKAsI94dsPZ3cnAoOWieLLoIK2sSa4SCwTepF</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>

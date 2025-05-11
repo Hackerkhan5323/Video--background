@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>116AAB48-3A15-4E97-B4C7-266E7908DB97</packageid>
+	<name>CloudDocs</name>
+	<version>6.6.0.611</version>
+	<target_location>/Components/CloudDocs/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>CloudDocs</name>
+			<assets_size>4976291</assets_size>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvLz4=</validation_xml>
+				<sig>OqBPe8C4uXnrUv7lE1O+4/H88a1ABsEBEgwSMYpGvQIEh4lSyyureje6xZ24pDCIElT5vC5sWMb+NH8aL7nN+KpjE9XQOIvxQOddN6jQLTsyEXpshpwQENmkwQdAnzHzYbYaRohTZxOFTBsknOSPtRZllX0VsBLRiGhg7QeDHHUAMnFUuFJ4uL/18j0W87c1io9zlAZIRbC/AIekJCKBJP+jCQYQ7M9lDdWklyQb4oa9VSyPrkX9kgiNXbBhgLXN3XPvbFRme40maCUNFkDSGJTj1Ho0unxVrk/h1tCuXTQudfvCUyps4QmBZQsD1WWJy+XaKkXDq22IrvACrRhl59nta30pw91dMNcA9OhNJzsnIzJGd/sn7ONb79Qa64cSXzfdHc3Y96J0IFiTgp64agdn01jqwZsbEsrNLqpOlZyVB3hbsgq2cY3/u3t2yZxhxPCo5VLE6jtz5KHiHR9bHjQ/zN0fgkQ0YQ+XjIuv/zWuy0986jZRkZElX0LqXVvs</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>

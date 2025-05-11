@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>F1DDAE25-D00B-4C8B-9B97-0D590C1414B2</packageid>
+	<name>CCDContainer</name>
+	<version>6.6.0.611</version>
+	<target_location>/CCDContainer/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>CCDContainer</name>
+			<assets_size>6267304</assets_size>
+			<applet_registration_info>
+				<applet_registration_element>
+					<name>CCDContainer</name>
+					<type>Native</type>
+					<version>1.0</version>
+					<module_path>/CCDContainer/CCDContainer.dll</module_path>
+					<display_name>CCDContainer</display_name>
+				</applet_registration_element>
+			</applet_registration_info>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvPjxGaWxlPjxJbnN0YWxsUGF0aD5c
+Q0NEQ29udGFpbmVyLmRsbDwvSW5zdGFsbFBhdGg+PFNpZ25hdHVyZVR5cGU+RGlnaXRhbFNpZ25h
+dHVyZTwvU2lnbmF0dXJlVHlwZT48U2lnbmF0dXJlSW5mbz5BZG9iZSBJbmMue3x9RGlnaUNlcnQg
+VHJ1c3RlZCBHNCBDb2RlIFNpZ25pbmcgUlNBNDA5NiBTSEEzODQgMjAyMSBDQTF7fH1EaWdpQ2Vy
+dCBUcnVzdGVkIFJvb3QgRzR7fH1EaWdpQ2VydCBBc3N1cmVkIElEIFJvb3QgQ0E8L1NpZ25hdHVy
+ZUluZm8+PC9GaWxlPjwvVmFsaWRhdGlvbkluZm8+
+</validation_xml>
+				<sig>rZKGmzz6F3S3DK+tjUjpX2KX74IAcGvUwK8ZECwWprG71LnwBVKOA6mfKVN0j4Lq/kVYD1U/dDINMBhiymYF+vuxjvT4WZWhGCiw3yNU0IYlm1UfHnCBbAb6WAoLQWI/zoWOXhB8xK3UXbW9fEvXesVpOZejLJvilxsYxZvWu/jCfy9GC8fS+C0oiw8hVLnQ8IXNEl2vnKNH6V0lr/WL59WUOWMxqvMJj4JY4JUNnnddpklnbIP0iHBO7AOc3MKePP+qaARGvJjdduE8PJWAUu7ASIfVFdCouTqRbkm6qixsTtZiABpGtnewy6HUtLJ4qjowdSJD/5MM85JE5kbIA/xk6VYtIY4a9SmbF4yCsk+A8qV0ebtEcrJkOnV98v8HH4s4VbepXwLyuseYppqRgH2E2bfDdTO2JlTxCXq4A8MJuya+/Z30FxLgQuQrnGK4i+qYUpbGBTOJ4TxN+Ibmq9WPhG0tGt+WAFBu/lVfZbBs9fkt39fmwB5IEkFdN6IH</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>

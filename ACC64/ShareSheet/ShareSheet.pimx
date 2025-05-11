@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>8A766DE3-3EA5-4F80-8012-E298D06941B3</packageid>
+	<name>ShareSheet</name>
+	<version>30.25.0.0606000611</version>
+	<target_location>/Components/ShareSheet/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>ShareSheet</name>
+			<assets_size>5896511</assets_size>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvLz4=</validation_xml>
+				<sig>IzmeiB1Xd1x+qjB4Y3eKe/Sx1uk+CLHliau6kDlJTK4tfAG+hYO1/7zqrIqnzuMs/D3++2UhStl9uGHdu7TaxYd0GZRMO2q56VqP7TnhbsI+jIxwn+sBfBFHOvDEft/orD+wuBLqQoXrOvfnGN1KUu9T8tCKXebamsSfxUq1r1ZaIFe/y1AsdemD/53D8opzsVziO0PsSgomk9TUWwou1lc0IP8U9lFh/xdG01hFs2TMygIFOUAsKwLe8j7Gjc9LqMpuy0P+RFylKxd+SsRPkj0frxa0iDSrkBxWukLAy7EU0b0UXhEDTERt0P9UjBvj6BklJ7vDDMG/3lYlJ5DF0Af4S2MY50Nwi6ngNclXFs+IdPukV9SyO0T6kWvnSu0xSswC0bTUJenWQ8/jjaDQR4fNyqp9fecf6dxMr9XIOfUGRaTX02Y/qnZrzyUJdYNScLjOQLg4oXvxZr17Hjzgo8XkPJ6K3CwqK2Nm8PMTXrIp80Pjo4+KZpPmxLmpyO7X</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>

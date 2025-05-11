@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>9AB1E8AB-B68E-4D7F-AF68-841F679D61FB</packageid>
+	<name>Diagnostics</name>
+	<version>6.6.0.138</version>
+	<target_location>/Diagnostics/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>Diagnostics</name>
+			<assets_size>2404160</assets_size>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvPjxGaWxlPjxJbnN0YWxsUGF0aD5c
+QWRvYmUgQ3JlYXRpdmUgQ2xvdWQgRGlhZ25vc3RpY3MuZGxsPC9JbnN0YWxsUGF0aD48U2lnbmF0
+dXJlVHlwZT5EaWdpdGFsU2lnbmF0dXJlPC9TaWduYXR1cmVUeXBlPjxTaWduYXR1cmVJbmZvPkFk
+b2JlIEluYy57fH1EaWdpQ2VydCBUcnVzdGVkIEc0IENvZGUgU2lnbmluZyBSU0E0MDk2IFNIQTM4
+NCAyMDIxIENBMXt8fURpZ2lDZXJ0IFRydXN0ZWQgUm9vdCBHNHt8fURpZ2lDZXJ0IEFzc3VyZWQg
+SUQgUm9vdCBDQTwvU2lnbmF0dXJlSW5mbz48L0ZpbGU+PEZpbGU+PEluc3RhbGxQYXRoPlxBZG9i
+ZSBDcmVhdGl2ZSBDbG91ZCBEaWFnbm9zdGljcy5leGU8L0luc3RhbGxQYXRoPjxTaWduYXR1cmVU
+eXBlPkRpZ2l0YWxTaWduYXR1cmU8L1NpZ25hdHVyZVR5cGU+PFNpZ25hdHVyZUluZm8+QWRvYmUg
+SW5jLnt8fURpZ2lDZXJ0IFRydXN0ZWQgRzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIw
+MjEgQ0Exe3x9RGlnaUNlcnQgVHJ1c3RlZCBSb290IEc0e3x9RGlnaUNlcnQgQXNzdXJlZCBJRCBS
+b290IENBPC9TaWduYXR1cmVJbmZvPjwvRmlsZT48L1ZhbGlkYXRpb25JbmZvPg==</validation_xml>
+				<sig>i99lW2uJ9Ya5rLMAx64ySnxj8vGKyR3wifQ08OEfI0TFZubJwop3zEhB6k7ssNWo7+G6PrRyFbw+GNstUsD/dfR9q0Z7lM2Dp6mw4CCmSiszpIzAnHjOXkiu5nAiQlGuQtAvc0CJGIcziyY9j2NN2fyxWAXKgb1kf5IQ+x9Y2UbZGQjc1+30QXjyfkr7yylSLwFE5m/6HZMrVHM6eB7DnyCZ2Hm9Yun+8Eyp6KvIVwj3VZcb58Kd0PaHYFYNqKo0XoXI21NgXEODpQ4gSN8NOzuQUdMlDl21dAFMRdnIVSo//F75SUwt5BfhzJt/BK4B5K0rBGVtgiImFMCHArgpTgzEpgBjZCOUyeVtZzMhKVdJkyVrCYn7+iDcMhbssaVHhGDZ7fm0diIxJnGxmiqXoxCOV/omE1+cz9BR2Ly/x9rWj41mbfiufJsH8MlX6L4PQJX1GMI2Tdt8cWSluF+qkWYqCP/VQ1QU37jBVQF1h2Bt6EPyTSvPwn+T2sflOLPh</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>

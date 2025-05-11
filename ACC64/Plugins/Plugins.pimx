@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>7FD20A4C-A54C-4789-979B-8E7306D25AFF</packageid>
+	<name>Plugins</name>
+	<version>6.6.0.610</version>
+	<target_location>/Components/Plugins/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>Plugins</name>
+			<assets_size>4185159</assets_size>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvLz4=</validation_xml>
+				<sig>aPBX6e95NcBLbyVi9F3MLz1OrKspMx9rlM57d3zqBWoNa2YdmuuKwhGiKvVORo+gXKPN16CvWZl1ECK7Q7sjkchNZYYTB+73NdjoRtm9+qyzCMoLUns/wc9rVgHkGIUyOtNk9HN3oPncynv3sHnFc1DLXdMRCIh6PtwK77kDDceUaFU0CW9qALoo7JGrKWOrJnJxXX05KMgVOz07ISDDDwDW55YypItZo+wMqdtly8PAIUvkXM0S3MujIs+v+aZZobMfhDNPfRiTlMhLHSPwOqhkBhfTHvhxeOXJrxDiUD6WtHkqGjW/Uk39ts/AcRkbaK7WNh76UsDHb5CTzdDxPL8gMpj/OASB2tJfscq4zl608TntwH+Sz6Y9Q7pObMqPxpE4vbXqHu9a47bAl01SuJSNsLS4zDdmWtt+HZequt0b7/gdneO8fQTQGiQJk9ciwUWoWNJw3r4BsuBxg6H85XdpaKJctt1Z7PWU6nno1ebUpZhEJL2D5YxX6S0ORQg0</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>

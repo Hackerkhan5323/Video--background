@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<package_installation_info version="2.0">
+	<packageid>5493EA9B-098D-4070-A4C0-DC949F59DA97</packageid>
+	<name>ADS</name>
+	<version>6.6.0.611</version>
+	<target_location>/ADS/</target_location>
+	<packages>
+		<pimaInfo>
+			<packagetype>zip</packagetype>
+			<name>ADS</name>
+			<assets_size>10725822</assets_size>
+			<applet_registration_info>
+				<applet_registration_element>
+					<name>C3Container</name>
+					<type>BL</type>
+					<version>1.0</version>
+					<module_path>/ADS/ContainerBL.dll</module_path>
+					<display_name>C3Container Applet BL Element</display_name>
+				</applet_registration_element>
+			</applet_registration_info>
+			<modifiers>
+				<install_modifier>
+					<executable_path>customhook\ADSCustomHook.exe</executable_path>
+					<arguments>
+						<argument>--install=1</argument>
+					</arguments>
+				</install_modifier>
+				<uninstall_modifier>
+					<executable_path>customhook\ADSCustomHook.exe</executable_path>
+					<arguments>
+						<argument>--install=0</argument>
+					</arguments>
+				</uninstall_modifier>
+			</modifiers>
+			<validation_info><validation_xml>PD94bWwgdmVyc2lvbj0iMS4wIj8+PFZhbGlkYXRpb25JbmZvPjxGaWxlPjxJbnN0YWxsUGF0aD5c
+QWRvYmUgQ3Jhc2ggUHJvY2Vzc29yLmV4ZTwvSW5zdGFsbFBhdGg+PFNpZ25hdHVyZVR5cGU+RGln
+aXRhbFNpZ25hdHVyZTwvU2lnbmF0dXJlVHlwZT48U2lnbmF0dXJlSW5mbz5BZG9iZSBJbmMue3x9
+RGlnaUNlcnQgVHJ1c3RlZCBHNCBDb2RlIFNpZ25pbmcgUlNBNDA5NiBTSEEzODQgMjAyMSBDQTF7
+fH1EaWdpQ2VydCBUcnVzdGVkIFJvb3QgRzR7fH1EaWdpQ2VydCBBc3N1cmVkIElEIFJvb3QgQ0E8
+L1NpZ25hdHVyZUluZm8+PC9GaWxlPjxGaWxlPjxJbnN0YWxsUGF0aD5cQWRvYmUgRGVza3RvcCBT
+ZXJ2aWNlLmV4ZTwvSW5zdGFsbFBhdGg+PFNpZ25hdHVyZVR5cGU+RGlnaXRhbFNpZ25hdHVyZTwv
+U2lnbmF0dXJlVHlwZT48U2lnbmF0dXJlSW5mbz5BZG9iZSBJbmMue3x9RGlnaUNlcnQgVHJ1c3Rl
+ZCBHNCBDb2RlIFNpZ25pbmcgUlNBNDA5NiBTSEEzODQgMjAyMSBDQTF7fH1EaWdpQ2VydCBUcnVz
+dGVkIFJvb3QgRzR7fH1EaWdpQ2VydCBBc3N1cmVkIElEIFJvb3QgQ0E8L1NpZ25hdHVyZUluZm8+
+PC9GaWxlPjxGaWxlPjxJbnN0YWxsUGF0aD5cQ29udGFpbmVyQkwuZGxsPC9JbnN0YWxsUGF0aD48
+U2lnbmF0dXJlVHlwZT5EaWdpdGFsU2lnbmF0dXJlPC9TaWduYXR1cmVUeXBlPjxTaWduYXR1cmVJ
+bmZvPkFkb2JlIEluYy57fH1EaWdpQ2VydCBUcnVzdGVkIEc0IENvZGUgU2lnbmluZyBSU0E0MDk2
+IFNIQTM4NCAyMDIxIENBMXt8fURpZ2lDZXJ0IFRydXN0ZWQgUm9vdCBHNHt8fURpZ2lDZXJ0IEFz
+c3VyZWQgSUQgUm9vdCBDQTwvU2lnbmF0dXJlSW5mbz48L0ZpbGU+PEZpbGU+PEluc3RhbGxQYXRo
+PlxDUkNsaWVudC5kbGw8L0luc3RhbGxQYXRoPjxTaWduYXR1cmVUeXBlPkRpZ2l0YWxTaWduYXR1
+cmU8L1NpZ25hdHVyZVR5cGU+PFNpZ25hdHVyZUluZm8+QWRvYmUgSW5jLnt8fURpZ2lDZXJ0IFRy
+dXN0ZWQgRzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0Exe3x9RGlnaUNlcnQg
+VHJ1c3RlZCBSb290IEc0e3x9RGlnaUNlcnQgQXNzdXJlZCBJRCBSb290IENBPC9TaWduYXR1cmVJ
+bmZvPjwvRmlsZT48RmlsZT48SW5zdGFsbFBhdGg+XENSTG9nVHJhbnNwb3J0LmV4ZTwvSW5zdGFs
+bFBhdGg+PFNpZ25hdHVyZVR5cGU+RGlnaXRhbFNpZ25hdHVyZTwvU2lnbmF0dXJlVHlwZT48U2ln
+bmF0dXJlSW5mbz5BZG9iZSBJbmMue3x9RGlnaUNlcnQgVHJ1c3RlZCBHNCBDb2RlIFNpZ25pbmcg
+UlNBNDA5NiBTSEEzODQgMjAyMSBDQTF7fH1EaWdpQ2VydCBUcnVzdGVkIFJvb3QgRzR7fH1EaWdp
+Q2VydCBBc3N1cmVkIElEIFJvb3QgQ0E8L1NpZ25hdHVyZUluZm8+PC9GaWxlPjxGaWxlPjxJbnN0
+YWxsUGF0aD5cQ1JXaW5kb3dzQ2xpZW50U2VydmljZS5leGU8L0luc3RhbGxQYXRoPjxTaWduYXR1
+cmVUeXBlPkRpZ2l0YWxTaWduYXR1cmU8L1NpZ25hdHVyZVR5cGU+PFNpZ25hdHVyZUluZm8+QWRv
+YmUgSW5jLnt8fURpZ2lDZXJ0IFRydXN0ZWQgRzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0
+IDIwMjEgQ0Exe3x9RGlnaUNlcnQgVHJ1c3RlZCBSb290IEc0e3x9RGlnaUNlcnQgQXNzdXJlZCBJ
+RCBSb290IENBPC9TaWduYXR1cmVJbmZvPjwvRmlsZT48RmlsZT48SW5zdGFsbFBhdGg+XGN1c3Rv
+bUhvb2tcQURTQ3VzdG9tSG9vay5leGU8L0luc3RhbGxQYXRoPjxTaWduYXR1cmVUeXBlPkRpZ2l0
+YWxTaWduYXR1cmU8L1NpZ25hdHVyZVR5cGU+PFNpZ25hdHVyZUluZm8+QWRvYmUgSW5jLnt8fURp
+Z2lDZXJ0IFRydXN0ZWQgRzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0Exe3x9
+RGlnaUNlcnQgVHJ1c3RlZCBSb290IEc0e3x9RGlnaUNlcnQgQXNzdXJlZCBJRCBSb290IENBPC9T
+aWduYXR1cmVJbmZvPjwvRmlsZT48L1ZhbGlkYXRpb25JbmZvPg==</validation_xml>
+				<sig>rng6fmLDWIwsBFlsrMMrzfkYAJ2VxMVUB47/lZlV1klAVX3EOs4XMI+Utx7PlHS08dFbM/pMt7YNovLA6fIi+fQ3/AcDGWla+EtZ5ame4pktsHmdROpr8O5snzjY4yUEIq7q1M1koBUYcc6zjKzyX++kICXKy8LqxJrnBofrywJeuDaGV0vIVOZHs3XoPBHRbzRZ4aJXoqSWm2HPOUL+TvuhogKTVgexIDqR3xadrlteUOpGzo2pJR8e25uRfB/r9cZVD5AmVY8wSo6Gek458NJlc6XtQdbtv+l3+1Fo8KC8LSFSzAoustj5DvxBqneCbToQNsBjMPd7a5Px6gfMht2Og56pWBsVhoiwZz5yUIQYRgqutNIo2mf7o8L8yby3Gu36ovRyf9uJzgYG5fZz+LHE4HLWtvjWnrVGGRhzk2GVPMvY5Q77nDhVC4rWus3aZ1AOjyormMVepU+5LrtQnFb13QRv0cSRRl6HYKRYPe2EyyL56m7/A2McQ55mTtxv</sig>
+			</validation_info>
+		</pimaInfo>
+	</packages>
+</package_installation_info>
