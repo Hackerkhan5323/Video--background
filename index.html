@@ -4,214 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:url" content="https://videobackgroundremoval.index.htmlcom">
-    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <title>VidMagic Pro | Advanced Video Background Removal & Editing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: #0f172a;
-            color: #ffffff;
-        }
-
-        /* Header Styles */
-        .header {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 1rem 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #38bdf8;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #38bdf8;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 150px 5% 100px;
-            text-align: center;
-            background: linear-gradient(45deg, #0f172a, #1e293b);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: #94a3b8;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            background: #38bdf8;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Features Grid */
-        .features {
-            padding: 5rem 5%;
-            background: #1e293b;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: #0f172a;
-            padding: 2rem;
-            border-radius: 15px;
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: #38bdf8;
-            margin-bottom: 1rem;
-        }
-
-        /* 3D Model Preview Section */
-        .model-preview {
-            padding: 5rem 5%;
-            text-align: center;
-        }
-
-        .model-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .model-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            height: 300px;
-            background: #1e293b;
-            transition: transform 0.3s;
-        }
-
-        .model-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* Video Demo Section */
-        .video-demo {
-            padding: 5rem 5%;
-            text-align: center;
-        }
-
-        .demo-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #0f172a;
-            border-radius: 15px;
-            padding: 2rem;
-            position: relative;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 5rem 5%;
-            background: #1e293b;
-            text-align: center;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .price-card {
-            background: #0f172a;
-            padding: 2rem;
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .price-card.pro {
-            border: 2px solid #38bdf8;
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 5rem 5%;
-            background: #0f172a;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Responsive Design */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #0f172a; color: #ffffff; }
+        .header { background: rgba(15, 23, 42, 0.95); padding: 1rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: #38bdf8; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #94a3b8; text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover { color: #38bdf8; }
+        .hero { padding: 150px 5% 100px; text-align: center; background: linear-gradient(45deg, #0f172a, #1e293b); }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; background: linear-gradient(45deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: #94a3b8; font-size: 1.2rem; margin-bottom: 2rem; }
+        .cta-button { background: #38bdf8; color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: transform 0.3s; display: inline-block; }
+        .cta-button:hover { transform: translateY(-3px); }
+        .features { padding: 5rem 5%; background: #1e293b; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .feature-card { background: #0f172a; padding: 2rem; border-radius: 15px; transition: transform 0.3s; text-align: center; }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-icon { font-size: 2.5rem; color: #38bdf8; margin-bottom: 1rem; }
+        .model-preview { padding: 5rem 5%; text-align: center; }
+        .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .model-item { position: relative; overflow: hidden; border-radius: 15px; height: 300px; background: #1e293b; transition: transform 0.3s; }
+        .model-item:hover { transform: scale(1.05); }
+        .video-demo { padding: 5rem 5%; text-align: center; }
+        .demo-container { max-width: 1000px; margin: 0 auto; background: #0f172a; border-radius: 15px; padding: 2rem; position: relative; }
+        .pricing { padding: 5rem 5%; background: #1e293b; text-align: center; }
+        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .price-card { background: #0f172a; padding: 2rem; border-radius: 15px; position: relative; }
+        .price-card.pro { border: 2px solid #38bdf8; transform: scale(1.05); }
+        .footer { padding: 5rem 5%; background: #0f172a; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -223,13 +52,24 @@
             <a href="#templates">Templates</a>
             <a href="#pricing">Pricing</a>
             <a href="#contact">Contact</a>
+            <a href="#" class="cta-button" id="startEditingBtn">Start Editing for Free</a>
+<script>
+  document.getElementById('startEditingBtn').onclick = function(e) {
+    e.preventDefault();
+    // Do something, like open a popup or redirect
+    alert("Button clicked! You can open a modal or redirect here.");
+    // window.location.href = "editor.html"; // Uncomment to redirect
+  };
+</script>
         </nav>
     </header>
 
     <section class="hero">
         <h1>Transform Your Videos with AI Magic</h1>
         <p>Remove backgrounds, add stunning effects, and create professional videos in minutes</p>
-        <a href="#" class="cta-button">Start Editing for Free</a>
+        <!-- Make the button open a real page or use JS! Uncomment the one you want: -->
+        <!-- <a href="editor.html" class="cta-button">Start Editing for Free</a> -->
+        <a href="#" class="cta-button" id="startEditingBtn">Start Editing for Free</a>
         <div class="animated-text">
             <span>5000+ Video Effects</span>
             <span>1000+ 3D Elements</span>
@@ -261,24 +101,11 @@
     <section class="model-preview" id="templates">
         <h2>3D Elements & Templates</h2>
         <div class="model-grid">
-     <div class="model-item">
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-            
-             <div class="model-item">
-  <model-viewer src="models/grass.glb" alt="Grass Model" auto-rotate camera-controls style="width: 300px; height: 300px;"></model-viewer>
-</div>
-             <div class="model-item">
-  <model-viewer src="models/grass.glb" alt="Grass Model" auto-rotate camera-controls style="width: 300px; height: 300px;"></model-viewer>
-</div>
-<div class="model-item">
-  <a href="downloads/HeatDistortion_1.0.32_Installer_win_2022.1zip" download>
-    Download Heat Distortion Installer
-  </a>
-</div>
-            <div class="model-item"></div>
-            <div class="model-item"></div>
-            <div class="model-item"></div>
-            <div class="model-item"></div>
+            <div class="model-item">
+                <!-- Make sure grass.glb is present in your project root or correct the path -->
+                <model-viewer src="grass.glb" alt="A grass model" auto-rotate camera-controls style="width: 100%; height: 100%;"></model-viewer>
+            </div>
+            <!-- Add more model-item blocks for more 3D models if you want -->
         </div>
     </section>
 
@@ -339,5 +166,16 @@
             <button>Subscribe</button>
         </div>
     </footer>
+
+    <script>
+        // Example: Make the button show a popup. Replace with your own logic if needed!
+        document.getElementById('startEditingBtn').onclick = function(e) {
+            e.preventDefault();
+            // Example: open a modal, redirect, etc.
+            alert("Start Editing button clicked!");
+            // To redirect to another page, use:
+            // window.location.href = "editor.html";
+        };
+    </script>
 </body>
 </html>
