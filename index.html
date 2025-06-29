@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Video Background Remover with 3D Overlay</title>
+  <title>Advanced AI Video Background Remover</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #38bdf8;
-      --secondary-color: #0ea5e9;
-      --dark-color: #0f172a;
+      --primary-color: #3b82f6;
+      --secondary-color: #2563eb;
+      --dark-color: #1e293b;
       --light-color: #f8fafc;
       --gray-color: #94a3b8;
+      --success-color: #10b981;
+      --error-color: #ef4444;
+      --warning-color: #f59e0b;
     }
     
     * {
@@ -122,17 +125,32 @@
       cursor: pointer;
       transition: all 0.3s;
       margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     
     .cta-button:hover {
       background-color: var(--secondary-color);
       transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .cta-button:disabled {
       background-color: var(--gray-color);
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
+    }
+    
+    .secondary-button {
+      background-color: white;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+    
+    .secondary-button:hover {
+      background-color: #f0f9ff;
     }
     
     .video-preview-container {
@@ -207,36 +225,142 @@
     
     .status-message {
       margin-top: 1rem;
-      padding: 0.5rem;
+      padding: 0.8rem;
       border-radius: 5px;
+      font-weight: 500;
     }
     
     .status-processing {
-      color: #f59e0b;
+      background-color: #fffbeb;
+      color: var(--warning-color);
+      border: 1px solid #fef3c7;
     }
     
     .status-success {
-      color: #10b981;
+      background-color: #ecfdf5;
+      color: var(--success-color);
+      border: 1px solid #d1fae5;
     }
     
     .status-error {
-      color: #ef4444;
+      background-color: #fef2f2;
+      color: var(--error-color);
+      border: 1px solid #fee2e2;
+    }
+    
+    .progress-container {
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+    
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--gray-color);
     }
     
     .progress-bar {
       width: 100%;
-      height: 8px;
+      height: 10px;
       background-color: #e2e8f0;
-      border-radius: 4px;
-      margin-top: 1rem;
+      border-radius: 5px;
       overflow: hidden;
     }
     
     .progress {
       height: 100%;
-      background-color: var(--primary-color);
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
       width: 0%;
-      transition: width 0.3s;
+      transition: width 0.3s ease;
+    }
+    
+    .controls-container {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      border-radius: 5px;
+      overflow: hidden;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .dropdown-content button {
+      color: var(--dark-color);
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    
+    .dropdown-content button:hover {
+      background-color: #f8fafc;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+    }
+    
+    #processedCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+    
+    .background-options {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .bg-option {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .bg-option:hover {
+      background-color: #f1f5f9;
+    }
+    
+    .bg-option.active {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
     }
     
     @media (max-width: 768px) {
@@ -256,6 +380,17 @@
         flex-direction: column;
         align-items: center;
       }
+      
+      .controls-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .dropdown-content {
+        position: static;
+        transform: none;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -264,7 +399,7 @@
     <div class="nav-container">
       <a href="#" class="logo">
         <i class="fas fa-magic"></i>
-        <span>VideoMagic</span>
+        <span>VideoMagic Pro</span>
       </a>
       <nav class="nav-links">
         <a href="#upload">Upload</a>
@@ -275,32 +410,65 @@
   </header>
 
   <section class="hero">
-    <h1>Transform Your Videos with AI</h1>
-    <p>Remove backgrounds and add stunning 3D effects with our powerful AI technology. Perfect for content creators, marketers, and developers.</p>
+    <h1>Advanced Video Background Removal</h1>
+    <p>Remove backgrounds with AI precision and enhance your videos with interactive 3D elements. Perfect for professional content creation.</p>
   </section>
 
   <section class="section upload-section" id="upload">
     <h2>Upload Your Video</h2>
     <div class="upload-container">
       <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-        <label for="videoInput" style="display: inline-block; padding: 0.8rem 1.5rem; background: #e0f2fe; border-radius: 5px; cursor: pointer;">
-          <i class="fas fa-video"></i> Choose Video File
+        <label for="videoInput" class="cta-button secondary-button">
+          <i class="fas fa-upload"></i> Choose Video File
           <input type="file" id="videoInput" accept="video/*" style="display: none;">
         </label>
         <div id="fileInfo" style="font-size: 0.9rem; color: var(--gray-color);"></div>
       </div>
-      <button class="cta-button" id="removeBgBtn" disabled>
-        <i class="fas fa-robot"></i> Remove Background
-      </button>
+      
+      <div class="background-options">
+        <div class="bg-option active" data-bg="remove">Remove Background</div>
+        <div class="bg-option" data-bg="green">Green Screen</div>
+        <div class="bg-option" data-bg="blur">Blur Background</div>
+      </div>
+      
+      <div class="controls-container">
+        <button class="cta-button" id="processBtn" disabled>
+          <i class="fas fa-cogs"></i> Process Video
+        </button>
+        
+        <div class="dropdown">
+          <button class="cta-button secondary-button" id="add3DButton">
+            <i class="fas fa-cube"></i> Add 3D Object
+          </button>
+          <div class="dropdown-content">
+            <button id="addCubeBtn"><i class="fas fa-cube"></i> Cube</button>
+            <button id="addSphereBtn"><i class="fas fa-globe"></i> Sphere</button>
+            <button id="addTorusBtn"><i class="fas fa-ring"></i> Torus</button>
+            <button id="addModelBtn"><i class="fas fa-project-diagram"></i> 3D Model</button>
+          </div>
+        </div>
+        
+        <button class="cta-button secondary-button" id="downloadBtn" disabled>
+          <i class="fas fa-download"></i> Download
+        </button>
+      </div>
+      
       <div id="statusMsg" class="status-message"></div>
-      <div class="progress-bar" id="progressBar" style="display: none;">
-        <div class="progress" id="progress"></div>
+      
+      <div class="progress-container">
+        <div class="progress-info">
+          <span id="progressStatus">Ready</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section demo-section" id="demo">
-    <h2>See the Magic</h2>
+    <h2>Results Preview</h2>
     <div class="video-preview-container">
       <div class="video-box">
         <h3>Original Video</h3>
@@ -311,22 +479,26 @@
       </div>
       <div class="video-box">
         <h3>Processed Video</h3>
-        <video id="outputVideo" controls style="display: none;"></video>
-        <div id="processedPlaceholder" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: #f1f5f9; border-radius: 8px;">
-          <p style="color: var(--gray-color);">Processed video will appear here</p>
+        <div class="canvas-container">
+          <video id="outputVideo" style="display: none;"></video>
+          <canvas id="processedCanvas"></canvas>
+          <div id="processedPlaceholder" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: #f1f5f9; border-radius: 8px;">
+            <p style="color: var(--gray-color);">Processed video will appear here</p>
+          </div>
         </div>
       </div>
     </div>
+    
     <div class="video-preview-container" style="margin-top: 2rem;">
       <div class="threejs-box">
-        <h3>3D Overlay Preview</h3>
+        <h3>3D Composition</h3>
         <div id="threeContainer"></div>
         <div style="margin-top: 1rem;">
-          <button class="cta-button" id="add3DCubeBtn" disabled>
-            <i class="fas fa-cube"></i> Add 3D Cube Overlay
-          </button>
-          <button class="cta-button" id="toggleBgBtn" style="display: none; margin-left: 1rem;">
+          <button class="cta-button secondary-button" id="toggleBgBtn">
             <i class="fas fa-eye-slash"></i> Toggle Background
+          </button>
+          <button class="cta-button secondary-button" id="resetCameraBtn">
+            <i class="fas fa-sync-alt"></i> Reset View
           </button>
         </div>
       </div>
@@ -334,319 +506,581 @@
   </section>
 
   <section class="section features" id="features">
-    <h2>Powerful Features</h2>
+    <h2>Advanced Features</h2>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">
-          <i class="fas fa-cut"></i>
+          <i class="fas fa-robot"></i>
         </div>
         <h3>AI Background Removal</h3>
-        <p>Our advanced AI instantly removes backgrounds from your videos with perfect edge detection.</p>
+        <p>State-of-the-art AI that precisely removes backgrounds while preserving fine details like hair and transparent objects.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <i class="fas fa-cube"></i>
+          <i class="fas fa-cubes"></i>
         </div>
-        <h3>3D Object Integration</h3>
-        <p>Seamlessly add 3D objects and effects to your videos with our WebGL-powered editor.</p>
+        <h3>3D Composition</h3>
+        <p>Add multiple 3D objects with realistic lighting and shadows that interact with your video.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <i class="fas fa-tachometer-alt"></i>
+          <i class="fas fa-sliders-h"></i>
         </div>
-        <h3>Fast Processing</h3>
-        <p>Optimized algorithms deliver quick results without compromising quality.</p>
+        <h3>Advanced Controls</h3>
+        <p>Fine-tune edge detection, transparency levels, and background replacement options.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <i class="fas fa-cloud-upload-alt"></i>
+          <i class="fas fa-cloud-download-alt"></i>
         </div>
         <h3>Cloud Processing</h3>
-        <p>Offload heavy processing to our cloud servers for better performance on any device.</p>
+        <p>Leverage GPU-accelerated cloud servers for fast processing of 4K videos.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <i class="fas fa-file-export"></i>
+          <i class="fas fa-palette"></i>
         </div>
-        <h3>Multiple Formats</h3>
-        <p>Export in MP4, WebM, or GIF formats with customizable quality settings.</p>
+        <h3>Custom Backgrounds</h3>
+        <p>Replace backgrounds with colors, gradients, images, or blur effects.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
-          <i class="fas fa-code"></i>
+          <i class="fas fa-code-branch"></i>
         </div>
-        <h3>API Access</h3>
-        <p>Integrate with our API for automated video processing in your applications.</p>
+        <h3>API Integration</h3>
+        <p>Powerful API for integrating these features into your own applications.</p>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <p>&copy; 2023 VideoMagic. All rights reserved.</p>
+    <p>&copy; 2023 VideoMagic Pro. All rights reserved.</p>
     <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-color);">
-      Powered by AI and WebGL technologies
+      Powered by WebGL, Three.js, and AI technologies
     </p>
   </footer>
 
   <!-- Add three.js from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/examples/js/loaders/GLTFLoader.js"></script>
   
   <script>
-    // DOM Elements
-    const videoInput = document.getElementById('videoInput');
-    const removeBgBtn = document.getElementById('removeBgBtn');
-    const add3DCubeBtn = document.getElementById('add3DCubeBtn');
-    const toggleBgBtn = document.getElementById('toggleBgBtn');
-    const statusMsg = document.getElementById('statusMsg');
-    const fileInfo = document.getElementById('fileInfo');
-    const originalVideo = document.getElementById('originalVideo');
-    const outputVideo = document.getElementById('outputVideo');
-    const originalPlaceholder = document.getElementById('originalPlaceholder');
-    const processedPlaceholder = document.getElementById('processedPlaceholder');
-    const progressBar = document.getElementById('progressBar');
-    const progress = document.getElementById('progress');
-    
-    // Three.js variables
-    let scene, camera, renderer, cube, controls;
-    let videoTexture, videoElementForTexture;
-    let showBackground = true;
-    
-    // Initialize the application
-    function init() {
-      setupEventListeners();
-    }
-    
-    // Set up event listeners
-    function setupEventListeners() {
-      // File input change
-      videoInput.addEventListener('change', handleFileSelect);
-      
-      // Remove background button
-      removeBgBtn.addEventListener('click', processVideo);
-      
-      // 3D cube button
-      add3DCubeBtn.addEventListener('click', init3DScene);
-      
-      // Toggle background button
-      toggleBgBtn.addEventListener('click', toggleBackground);
-    }
-    
-    // Handle file selection
-    function handleFileSelect(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      
-      // Update file info
-      fileInfo.textContent = `${file.name} (${formatFileSize(file.size)})`;
-      
-      // Enable remove background button
-      removeBgBtn.disabled = false;
-      
-      // Display original video
-      const videoURL = URL.createObjectURL(file);
-      originalVideo.src = videoURL;
-      originalVideo.style.display = 'block';
-      originalPlaceholder.style.display = 'none';
-      
-      // Reset processed video
-      outputVideo.src = '';
-      outputVideo.style.display = 'none';
-      processedPlaceholder.style.display = 'flex';
-      
-      // Reset 3D scene if exists
-      if (renderer) {
-        document.getElementById('threeContainer').removeChild(renderer.domElement);
-        renderer = null;
-        add3DCubeBtn.disabled = false;
-        toggleBgBtn.style.display = 'none';
+    // Main Application Class
+    class VideoBackgroundRemover {
+      constructor() {
+        // DOM Elements
+        this.videoInput = document.getElementById('videoInput');
+        this.processBtn = document.getElementById('processBtn');
+        this.add3DButton = document.getElementById('add3DButton');
+        this.downloadBtn = document.getElementById('downloadBtn');
+        this.statusMsg = document.getElementById('statusMsg');
+        this.fileInfo = document.getElementById('fileInfo');
+        this.originalVideo = document.getElementById('originalVideo');
+        this.outputVideo = document.getElementById('outputVideo');
+        this.processedCanvas = document.getElementById('processedCanvas');
+        this.originalPlaceholder = document.getElementById('originalPlaceholder');
+        this.processedPlaceholder = document.getElementById('processedPlaceholder');
+        this.progressBar = document.getElementById('progress');
+        this.progressStatus = document.getElementById('progressStatus');
+        this.progressPercent = document.getElementById('progressPercent');
+        this.toggleBgBtn = document.getElementById('toggleBgBtn');
+        this.resetCameraBtn = document.getElementById('resetCameraBtn');
+        
+        // Background options
+        this.bgOptions = document.querySelectorAll('.bg-option');
+        this.currentBgOption = 'remove';
+        
+        // 3D object buttons
+        this.addCubeBtn = document.getElementById('addCubeBtn');
+        this.addSphereBtn = document.getElementById('addSphereBtn');
+        this.addTorusBtn = document.getElementById('addTorusBtn');
+        this.addModelBtn = document.getElementById('addModelBtn');
+        
+        // Three.js variables
+        this.scene = null;
+        this.camera = null;
+        this.renderer = null;
+        this.controls = null;
+        this.videoTexture = null;
+        this.videoElementForTexture = null;
+        this.showBackground = true;
+        this.objects = [];
+        
+        // Processing variables
+        this.isProcessing = false;
+        this.processedVideoUrl = null;
+        
+        // Initialize
+        this.init();
       }
       
-      // Reset status
-      statusMsg.textContent = '';
-      statusMsg.className = 'status-message';
-      progressBar.style.display = 'none';
-    }
-    
-    // Process video (background removal simulation)
-    function processVideo() {
-      if (!videoInput.files[0]) {
-        showStatus('Please select a video file first.', 'error');
-        return;
+      init() {
+        this.setupEventListeners();
+        this.setupCanvas();
+        this.setDefaultBackgroundOption();
       }
       
-      // Disable buttons during processing
-      removeBgBtn.disabled = true;
-      add3DCubeBtn.disabled = true;
+      setupEventListeners() {
+        // File input
+        this.videoInput.addEventListener('change', (e) => this.handleFileSelect(e));
+        
+        // Process button
+        this.processBtn.addEventListener('click', () => this.processVideo());
+        
+        // Download button
+        this.downloadBtn.addEventListener('click', () => this.downloadProcessedVideo());
+        
+        // Background options
+        this.bgOptions.forEach(option => {
+          option.addEventListener('click', () => {
+            this.bgOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            this.currentBgOption = option.dataset.bg;
+            if (this.processedVideoUrl) {
+              this.applyBackgroundEffect();
+            }
+          });
+        });
+        
+        // 3D object buttons
+        this.addCubeBtn.addEventListener('click', () => this.add3DObject('cube'));
+        this.addSphereBtn.addEventListener('click', () => this.add3DObject('sphere'));
+        this.addTorusBtn.addEventListener('click', () => this.add3DObject('torus'));
+        this.addModelBtn.addEventListener('click', () => this.add3DObject('model'));
+        
+        // Toggle background
+        this.toggleBgBtn.addEventListener('click', () => this.toggleBackground());
+        
+        // Reset camera
+        this.resetCameraBtn.addEventListener('click', () => this.resetCamera());
+      }
       
-      // Show processing status
-      showStatus('Processing video... This may take a few moments.', 'processing');
-      progressBar.style.display = 'block';
+      setupCanvas() {
+        this.canvasCtx = this.processedCanvas.getContext('2d');
+        this.processedCanvas.width = 500;
+        this.processedCanvas.height = 300;
+      }
       
-      // Simulate processing with progress updates
-      let progressValue = 0;
-      const interval = setInterval(() => {
-        progressValue += Math.random() * 10;
-        if (progressValue >= 100) {
-          clearInterval(interval);
-          progressValue = 100;
-          processingComplete();
+      setDefaultBackgroundOption() {
+        this.bgOptions[0].classList.add('active');
+        this.currentBgOption = this.bgOptions[0].dataset.bg;
+      }
+      
+      handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        // Update file info
+        this.fileInfo.textContent = `${file.name} (${this.formatFileSize(file.size)})`;
+        
+        // Enable process button
+        this.processBtn.disabled = false;
+        
+        // Display original video
+        const videoURL = URL.createObjectURL(file);
+        this.originalVideo.src = videoURL;
+        this.originalVideo.style.display = 'block';
+        this.originalPlaceholder.style.display = 'none';
+        
+        // Reset processed video
+        this.outputVideo.src = '';
+        this.outputVideo.style.display = 'none';
+        this.processedPlaceholder.style.display = 'flex';
+        this.processedCanvas.style.display = 'none';
+        
+        // Reset 3D scene
+        if (this.renderer) {
+          document.getElementById('threeContainer').removeChild(this.renderer.domElement);
+          this.renderer = null;
+          this.scene = null;
+          this.objects = [];
         }
-        progress.style.width = `${progressValue}%`;
-      }, 300);
-      
-      // Store original video element for texture
-      videoElementForTexture = originalVideo.cloneNode();
-      videoElementForTexture.muted = true;
-      videoElementForTexture.loop = true;
-    }
-    
-    // Processing complete handler
-    function processingComplete() {
-      // In a real app, this would be the result from your API
-      // For demo, we're just using the original video with a green screen effect
-      outputVideo.src = originalVideo.src;
-      outputVideo.style.display = 'block';
-      processedPlaceholder.style.display = 'none';
-      
-      // Enable 3D button
-      add3DCubeBtn.disabled = false;
-      
-      // Show success message
-      showStatus('Video processing complete! Now you can add 3D effects.', 'success');
-      
-      // Hide progress bar after delay
-      setTimeout(() => {
-        progressBar.style.display = 'none';
-        progress.style.width = '0%';
-      }, 2000);
-    }
-    
-    // Initialize 3D scene
-    function init3DScene() {
-      if (!outputVideo.src) {
-        showStatus('Please process a video first.', 'error');
-        return;
+        
+        // Reset buttons
+        this.downloadBtn.disabled = true;
+        this.add3DButton.disabled = true;
+        
+        // Reset status
+        this.showStatus('Ready to process video', 'success');
+        this.updateProgress(0, 'Ready');
       }
       
-      // Disable button
-      add3DCubeBtn.disabled = true;
-      toggleBgBtn.style.display = 'inline-block';
-      
-      // Set up Three.js scene
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, 400/300, 0.1, 1000);
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(400, 300);
-      document.getElementById('threeContainer').appendChild(renderer.domElement);
-      
-      // Add orbit controls
-      controls = new THREE.OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.25;
-      
-      // Lighting
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-      scene.add(ambientLight);
-      
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-      directionalLight.position.set(1, 2, 3);
-      scene.add(directionalLight);
-      
-      // Create video texture
-      videoTexture = new THREE.VideoTexture(videoElementForTexture);
-      videoTexture.minFilter = THREE.LinearFilter;
-      videoTexture.magFilter = THREE.LinearFilter;
-      videoTexture.format = THREE.RGBFormat;
-      
-      // Create plane for video background
-      const planeGeometry = new THREE.PlaneGeometry(4, 3);
-      const planeMaterial = new THREE.MeshBasicMaterial({ 
-        map: videoTexture,
-        transparent: true,
-        opacity: showBackground ? 1 : 0
-      });
-      const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-      plane.position.z = -1;
-      scene.add(plane);
-      
-      // Cube
-      const geometry = new THREE.BoxGeometry(1, 1, 1);
-      const material = new THREE.MeshStandardMaterial({ 
-        color: 0x38bdf8,
-        metalness: 0.7,
-        roughness: 0.2
-      });
-      cube = new THREE.Mesh(geometry, material);
-      scene.add(cube);
-      
-      camera.position.z = 3;
-      
-      // Start playing the video
-      videoElementForTexture.play();
-      
-      // Start animation loop
-      animate();
-      
-      showStatus('3D scene ready! Drag to rotate view.', 'success');
-    }
-    
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
-      
-      // Update video texture
-      if (videoTexture) {
-        videoTexture.needsUpdate = true;
-      }
-      
-      // Rotate cube
-      if (cube) {
-        cube.rotation.x += 0.005;
-        cube.rotation.y += 0.01;
-      }
-      
-      // Update controls
-      if (controls) {
-        controls.update();
-      }
-      
-      renderer.render(scene, camera);
-    }
-    
-    // Toggle video background visibility
-    function toggleBackground() {
-      showBackground = !showBackground;
-      
-      // Find the plane mesh and update its opacity
-      scene.children.forEach(child => {
-        if (child instanceof THREE.Mesh && child.geometry instanceof THREE.PlaneGeometry) {
-          child.material.opacity = showBackground ? 1 : 0;
+      processVideo() {
+        if (!this.videoInput.files[0]) {
+          this.showStatus('Please select a video file first.', 'error');
+          return;
         }
-      });
+        
+        // Disable buttons during processing
+        this.processBtn.disabled = true;
+        this.add3DButton.disabled = true;
+        this.isProcessing = true;
+        
+        // Show processing status
+        this.showStatus('Processing video... This may take a few moments.', 'processing');
+        
+        // Simulate processing with progress updates
+        let progressValue = 0;
+        const interval = setInterval(() => {
+          progressValue += Math.random() * 10;
+          if (progressValue >= 100) {
+            clearInterval(interval);
+            progressValue = 100;
+            this.processingComplete();
+          }
+          this.updateProgress(progressValue, 'Processing');
+        }, 300);
+        
+        // Store original video element for texture
+        this.videoElementForTexture = this.originalVideo.cloneNode();
+        this.videoElementForTexture.muted = true;
+        this.videoElementForTexture.loop = true;
+      }
       
-      toggleBgBtn.innerHTML = showBackground ? 
-        '<i class="fas fa-eye-slash"></i> Hide Background' : 
-        '<i class="fas fa-eye"></i> Show Background';
+      processingComplete() {
+        this.isProcessing = false;
+        
+        // Create a processed version (simulated)
+        this.createProcessedVideo();
+        
+        // Enable 3D button
+        this.add3DButton.disabled = false;
+        this.downloadBtn.disabled = false;
+        
+        // Show success message
+        this.showStatus('Video processing complete! You can now add 3D objects.', 'success');
+        this.updateProgress(100, 'Complete');
+        
+        // Hide progress bar after delay
+        setTimeout(() => {
+          this.updateProgress(0, 'Ready');
+        }, 2000);
+      }
+      
+      createProcessedVideo() {
+        // In a real app, this would be the result from your API
+        // For demo, we're creating a canvas with background effects
+        this.processedPlaceholder.style.display = 'none';
+        this.processedCanvas.style.display = 'block';
+        
+        // Set canvas size to match video
+        const video = this.originalVideo;
+        this.processedCanvas.width = video.videoWidth || 500;
+        this.processedCanvas.height = video.videoHeight || 300;
+        
+        // Apply the selected background effect
+        this.applyBackgroundEffect();
+        
+        // Create a blob URL for download
+        this.processedVideoUrl = this.originalVideo.src;
+      }
+      
+      applyBackgroundEffect() {
+        const video = this.originalVideo;
+        const ctx = this.processedCanvas.getContext('2d');
+        
+        // Draw the original video frame
+        ctx.drawImage(video, 0, 0, this.processedCanvas.width, this.processedCanvas.height);
+        
+        // Apply the selected effect
+        switch(this.currentBgOption) {
+          case 'remove':
+            this.applyRemoveBackgroundEffect(ctx);
+            break;
+          case 'green':
+            this.applyGreenScreenEffect(ctx);
+            break;
+          case 'blur':
+            this.applyBlurBackgroundEffect(ctx);
+            break;
+        }
+        
+        // If 3D scene exists, update the video texture
+        if (this.videoTexture) {
+          this.videoTexture.needsUpdate = true;
+        }
+      }
+      
+      applyRemoveBackgroundEffect(ctx) {
+        // Get image data
+        const imageData = ctx.getImageData(0, 0, this.processedCanvas.width, this.processedCanvas.height);
+        const data = imageData.data;
+        
+        // Simple background removal simulation (would be AI in real app)
+        for (let i = 0; i < data.length; i += 4) {
+          // Simple green screen removal (just for demo)
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          
+          // Detect green-ish pixels and make them transparent
+          if (g > r * 1.2 && g > b * 1.2) {
+            data[i + 3] = 0; // Set alpha to 0
+          }
+        }
+        
+        ctx.putImageData(imageData, 0, 0);
+      }
+      
+      applyGreenScreenEffect(ctx) {
+        // Get image data
+        const imageData = ctx.getImageData(0, 0, this.processedCanvas.width, this.processedCanvas.height);
+        const data = imageData.data;
+        
+        // Create green screen effect
+        for (let i = 0; i < data.length; i += 4) {
+          // Make non-transparent pixels green
+          if (data[i + 3] > 0) {
+            data[i] = 0;     // R
+            data[i + 1] = 255; // G
+            data[i + 2] = 0;   // B
+          }
+        }
+        
+        ctx.putImageData(imageData, 0, 0);
+      }
+      
+      applyBlurBackgroundEffect(ctx) {
+        // First draw the original image
+        ctx.drawImage(this.originalVideo, 0, 0, this.processedCanvas.width, this.processedCanvas.height);
+        
+        // Apply blur to the entire canvas
+        ctx.filter = 'blur(8px)';
+        ctx.drawImage(this.originalVideo, 0, 0, this.processedCanvas.width, this.processedCanvas.height);
+        ctx.filter = 'none';
+        
+        // Then draw the foreground (non-background) pixels normally
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = this.processedCanvas.width;
+        tempCanvas.height = this.processedCanvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+        
+        // Apply our remove background effect to temp canvas
+        tempCtx.drawImage(this.originalVideo, 0, 0, tempCanvas.width, tempCanvas.height);
+        this.applyRemoveBackgroundEffect(tempCtx);
+        
+        // Draw the foreground on top of the blurred background
+        ctx.drawImage(tempCanvas, 0, 0);
+      }
+      
+      init3DScene() {
+        if (!this.processedVideoUrl) {
+          this.showStatus('Please process a video first.', 'error');
+          return;
+        }
+        
+        // Set up Three.js scene
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera(75, 400/300, 0.1, 1000);
+        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        this.renderer.setSize(400, 300);
+        this.renderer.shadowMap.enabled = true;
+        document.getElementById('threeContainer').appendChild(this.renderer.domElement);
+        
+        // Add orbit controls
+        this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+        this.controls.enableDamping = true;
+        this.controls.dampingFactor = 0.25;
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        this.scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(1, 2, 3);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.mapSize.width = 1024;
+        directionalLight.shadow.mapSize.height = 1024;
+        this.scene.add(directionalLight);
+        
+        // Create video texture from processed canvas
+        this.videoTexture = new THREE.CanvasTexture(this.processedCanvas);
+        this.videoTexture.minFilter = THREE.LinearFilter;
+        this.videoTexture.magFilter = THREE.LinearFilter;
+        
+        // Create plane for video background
+        const planeGeometry = new THREE.PlaneGeometry(4, 3);
+        const planeMaterial = new THREE.MeshBasicMaterial({ 
+          map: this.videoTexture,
+          transparent: true,
+          opacity: this.showBackground ? 1 : 0
+        });
+        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.position.z = -1;
+        this.scene.add(plane);
+        
+        this.camera.position.z = 3;
+        
+        // Start animation loop
+        this.animate();
+        
+        this.showStatus('3D scene ready! Drag to rotate view.', 'success');
+      }
+      
+      add3DObject(type) {
+        if (!this.scene) {
+          this.init3DScene();
+        }
+        
+        let geometry, material, object;
+        
+        switch(type) {
+          case 'cube':
+            geometry = new THREE.BoxGeometry(1, 1, 1);
+            material = new THREE.MeshStandardMaterial({ 
+              color: 0x3b82f6,
+              metalness: 0.7,
+              roughness: 0.2
+            });
+            object = new THREE.Mesh(geometry, material);
+            object.castShadow = true;
+            object.position.set(0, 0, 0);
+            break;
+            
+          case 'sphere':
+            geometry = new THREE.SphereGeometry(0.5, 32, 32);
+            material = new THREE.MeshStandardMaterial({ 
+              color: 0xef4444,
+              metalness: 0.3,
+              roughness: 0.4
+            });
+            object = new THREE.Mesh(geometry, material);
+            object.castShadow = true;
+            object.position.set(1, 0, 0);
+            break;
+            
+          case 'torus':
+            geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
+            material = new THREE.MeshStandardMaterial({ 
+              color: 0x10b981,
+              metalness: 0.5,
+              roughness: 0.5
+            });
+            object = new THREE.Mesh(geometry, material);
+            object.castShadow = true;
+            object.position.set(-1, 0, 0);
+            object.rotation.x = Math.PI / 2;
+            break;
+            
+          case 'model':
+            // In a real app, you would load a GLTF model here
+            geometry = new THREE.ConeGeometry(0.5, 1, 32);
+            material = new THREE.MeshStandardMaterial({ 
+              color: 0xf59e0b,
+              metalness: 0.4,
+              roughness: 0.6
+            });
+            object = new THREE.Mesh(geometry, material);
+            object.castShadow = true;
+            object.position.set(0, 1, 0);
+            break;
+        }
+        
+        this.scene.add(object);
+        this.objects.push(object);
+        
+        this.showStatus(`Added ${type} to scene. Drag to rotate view.`, 'success');
+      }
+      
+      animate() {
+        requestAnimationFrame(() => this.animate());
+        
+        // Update video texture
+        if (this.videoTexture) {
+          this.videoTexture.needsUpdate = true;
+        }
+        
+        // Rotate all objects
+        this.objects.forEach(obj => {
+          obj.rotation.x += 0.005;
+          obj.rotation.y += 0.01;
+        });
+        
+        // Update controls
+        if (this.controls) {
+          this.controls.update();
+        }
+        
+        this.renderer.render(this.scene, this.camera);
+      }
+      
+      toggleBackground() {
+        this.showBackground = !this.showBackground;
+        
+        // Find the plane mesh and update its opacity
+        this.scene.children.forEach(child => {
+          if (child instanceof THREE.Mesh && child.geometry instanceof THREE.PlaneGeometry) {
+            child.material.opacity = this.showBackground ? 1 : 0;
+          }
+        });
+        
+        this.toggleBgBtn.innerHTML = this.showBackground ? 
+          '<i class="fas fa-eye-slash"></i> Hide Background' : 
+          '<i class="fas fa-eye"></i> Show Background';
+      }
+      
+      resetCamera() {
+        if (this.camera && this.controls) {
+          this.camera.position.set(0, 0, 3);
+          this.controls.reset();
+        }
+      }
+      
+      downloadProcessedVideo() {
+        if (!this.processedVideoUrl) {
+          this.showStatus('No processed video available to download.', 'error');
+          return;
+        }
+        
+        // In a real app, you would use the actual processed video
+        // For demo, we're using the original video
+        const a = document.createElement('a');
+        a.href = this.processedVideoUrl;
+        a.download = `processed_${this.videoInput.files[0].name}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        
+        this.showStatus('Download started!', 'success');
+      }
+      
+      showStatus(message, type) {
+        this.statusMsg.textContent = message;
+        this.statusMsg.className = `status-message status-${type}`;
+      }
+      
+      updateProgress(percent, status) {
+        this.progressBar.style.width = `${percent}%`;
+        this.progressStatus.textContent = status;
+        this.progressPercent.textContent = `${Math.round(percent)}%`;
+      }
+      
+      formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      }
     }
     
-    // Helper function to show status messages
-    function showStatus(message, type) {
-      statusMsg.textContent = message;
-      statusMsg.className = `status-message status-${type}`;
-    }
-    
-    // Helper function to format file size
-    function formatFileSize(bytes) {
-      if (bytes === 0) return '0 Bytes';
-      const k = 1024;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
-    
-    // Initialize the app
-    document.addEventListener('DOMContentLoaded', init);
+    // Initialize the app when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      const app = new VideoBackgroundRemover();
+      
+      // Update processed canvas in real-time
+      const originalVideo = document.getElementById('originalVideo');
+      originalVideo.addEventListener('play', () => {
+        function updateCanvas() {
+          if (!originalVideo.paused && !originalVideo.ended) {
+            app.applyBackgroundEffect();
+            requestAnimationFrame(updateCanvas);
+          }
+        }
+        updateCanvas();
+      });
+    });
   </script>
 </body>
 </html>
