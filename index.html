@@ -1,181 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:url" content="https://videobackgroundremoval.index.htmlcom">
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <title>VidMagic Pro | Advanced Video Background Removal & Editing</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #0f172a; color: #ffffff; }
-        .header { background: rgba(15, 23, 42, 0.95); padding: 1rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 700; color: #38bdf8; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: #94a3b8; text-decoration: none; transition: color 0.3s; }
-        .nav-links a:hover { color: #38bdf8; }
-        .hero { padding: 150px 5% 100px; text-align: center; background: linear-gradient(45deg, #0f172a, #1e293b); }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; background: linear-gradient(45deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: #94a3b8; font-size: 1.2rem; margin-bottom: 2rem; }
-        .cta-button { background: #38bdf8; color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: transform 0.3s; display: inline-block; }
-        .cta-button:hover { transform: translateY(-3px); }
-        .features { padding: 5rem 5%; background: #1e293b; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .feature-card { background: #0f172a; padding: 2rem; border-radius: 15px; transition: transform 0.3s; text-align: center; }
-        .feature-card:hover { transform: translateY(-10px); }
-        .feature-icon { font-size: 2.5rem; color: #38bdf8; margin-bottom: 1rem; }
-        .model-preview { padding: 5rem 5%; text-align: center; }
-        .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .model-item { position: relative; overflow: hidden; border-radius: 15px; height: 300px; background: #1e293b; transition: transform 0.3s; }
-        .model-item:hover { transform: scale(1.05); }
-        .video-demo { padding: 5rem 5%; text-align: center; }
-        .demo-container { max-width: 1000px; margin: 0 auto; background: #0f172a; border-radius: 15px; padding: 2rem; position: relative; }
-        .pricing { padding: 5rem 5%; background: #1e293b; text-align: center; }
-        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .price-card { background: #0f172a; padding: 2rem; border-radius: 15px; position: relative; }
-        .price-card.pro { border: 2px solid #38bdf8; transform: scale(1.05); }
-        .footer { padding: 5rem 5%; background: #0f172a; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .features-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VidMagic Pro | AI Video Background Removal & 3D Effects</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #0f172a; color: #fff; font-family: 'Poppins', sans-serif; }
+    .header { background: rgba(15,23,42,0.95); padding: 1rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: 700; color: #38bdf8; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: #94a3b8; text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: #38bdf8; }
+    .hero { padding: 150px 5% 60px; text-align: center; background: linear-gradient(45deg, #0f172a, #1e293b); }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; background: linear-gradient(45deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: #94a3b8; font-size: 1.2rem; margin-bottom: 2rem; }
+    .cta-button { background: #38bdf8; color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: transform 0.3s; display: inline-block; }
+    .cta-button:hover { transform: translateY(-3px); }
+    .upload-section { text-align: center; margin: 40px 0; }
+    .features, .demo-section { padding: 5rem 5%; background: #1e293b; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .feature-card { background: #0f172a; padding: 2rem; border-radius: 15px; text-align: center; }
+    .feature-icon { font-size: 2.5rem; color: #38bdf8; margin-bottom: 1rem; }
+    .video-preview-container { display: flex; justify-content: center; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+    .video-box, .threejs-box { background: #0f172a; border-radius: 10px; padding: 1rem; margin-top: 1rem; }
+    .threejs-box { width: 400px; height: 300px; }
+    .footer { padding: 5rem 5%; background: #0f172a; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .video-preview-container { flex-direction: column; }
+      .threejs-box { width: 100%; height: 250px; }
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">VidMagic Pro</div>
-        <nav class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#templates">Templates</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Contact</a>
-            <a href="#" class="cta-button" id="startEditingBtn">Start Editing for Free</a>
-<script>
-  document.getElementById('startEditingBtn').onclick = function(e) {
-    e.preventDefault();
-    // Do something, like open a popup or redirect
-    alert("Button clicked! You can open a modal or redirect here.");
-    // window.location.href = "editor.html"; // Uncomment to redirect
-  };
-</script>
-        </nav>
-    </header>
+  <header class="header">
+    <div class="logo">VidMagic Pro</div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#demo">Demo</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <section class="hero">
-        <h1>Transform Your Videos with AI Magic</h1>
-        <p>Remove backgrounds, add stunning effects, and create professional videos in minutes</p>
-        <!-- Make the button open a real page or use JS! Uncomment the one you want: -->
-        <!-- <a href="editor.html" class="cta-button">Start Editing for Free</a> -->
-        <a href="#" class="cta-button" id="startEditingBtn">Start Editing for Free</a>
-        <div class="animated-text">
-            <span>5000+ Video Effects</span>
-            <span>1000+ 3D Elements</span>
-            <span>AI-Powered Tools</span>
-        </div>
-    </section>
+  
+<section class="hero">
+    <h1>Transform Your Videos with AI Magic</h1>
+    <p>Remove backgrounds, add stunning effects, and create professional videos in minutes</p>
+    <a href="#" class="cta-button" id="startEditingBtn">Start Editing for Free</a>
+    <div class="animated-text">
+        <span>5000+ Video Effects</span>
+        <span>1000+ 3D Elements</span>
+        <span>AI-Powered Tools</span>
+    </div>
+</section>
 
-    <section class="features" id="features">
-        <h2>Powerful Features</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-magic feature-icon"></i>
-                <h3>AI Background Removal</h3>
-                <p>Instant background removal with advanced AI technology</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-cube feature-icon"></i>
-                <h3>3D Model Integration</h3>
-                <p>Add and animate 3D models directly in your videos</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-snowflake feature-icon"></i>
-                <h3>Special Effects</h3>
-                <p>2000+ effects including snow, rain, fire, and more</p>
-            </div>
-        </div>
-    </section>
+<!-- ADD THIS SECTION BELOW -->
+<section class="tool-section" style="padding:2rem 5%; text-align:center;">
+    <h2>Try AI Background Removal & 3D Overlay</h2>
+    <input type="file" id="videoInput" accept="video/*">
+    <button id="removeBgBtn">Remove Background</button>
+    <video id="outputVideo" controls style="display:none; margin-top:1rem;"></video>
+    <div id="threeContainer" style="width:400px; height:300px; margin:1rem auto;"></div>
+    <button id="add3DObjectBtn">Add 3D Cube Overlay</button>
+</section>
 
-    <section class="model-preview" id="templates">
-        <h2>3D Elements & Templates</h2>
-        <div class="model-grid">
-            <div class="model-item">
-                <!-- Make sure grass.glb is present in your project root or correct the path -->
-                <model-viewer src="grass.glb" alt="A grass model" auto-rotate camera-controls style="width: 100%; height: 100%;"></model-viewer>
-            </div>
-            <!-- Add more model-item blocks for more 3D models if you want -->
-        </div>
-    </section>
+  <section class="upload-section" id="upload">
+    <h2>Upload Your Video</h2>
+    <input type="file" id="videoInput" accept="video/*">
+    <button class="cta-button" id="removeBgBtn">Remove Background</button>
+    <div id="statusMsg" style="margin-top:15px;color:#38bdf8;"></div>
+  </section>
 
-    <section class="video-demo">
-        <h2>See It in Action</h2>
-        <div class="demo-container">
-            <!-- Add video embed code here -->
-        </div>
-    </section>
+  <section class="demo-section" id="demo">
+    <h2>See the Magic</h2>
+    <div class="video-preview-container">
+      <div class="video-box">
+        <h3>Processed Video</h3>
+        <video id="outputVideo" style="width:320px;max-width:100%;border-radius:10px;display:none;" controls></video>
+      </div>
+      <div class="threejs-box" id="threeContainer"></div>
+    </div>
+    <div style="margin-top:1rem;text-align:center;">
+      <button class="cta-button" id="add3DCubeBtn">Add 3D Cube Overlay</button>
+    </div>
+  </section>
 
-    <section class="pricing" id="pricing">
-        <h2>Simple Pricing</h2>
-        <div class="pricing-cards">
-            <div class="price-card">
-                <h3>Free</h3>
-                <p class="price">$0<span>/month</span></p>
-                <ul>
-                    <li>Basic Editing Tools</li>
-                    <li>10 Standard Effects</li>
-                    <li>720p Exports</li>
-                </ul>
-            </div>
-            <div class="price-card pro">
-                <h3>Pro</h3>
-                <p class="price">$29<span>/month</span></p>
-                <ul>
-                    <li>All Premium Features</li>
-                    <li>Unlimited Effects</li>
-                    <li>4K Exports</li>
-                </ul>
-            </div>
-            <div class="price-card">
-                <h3>Business</h3>
-                <p class="price">$99<span>/month</span></p>
-                <ul>
-                    <li>Team Collaboration</li>
-                    <li>Priority Support</li>
-                    <li>Custom Templates</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+  <section class="features" id="features">
+    <h2>Powerful Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-magic feature-icon"></i>
+        <h3>AI Background Removal</h3>
+        <p>Instant background removal with advanced AI technology.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-cube feature-icon"></i>
+        <h3>3D Model Integration</h3>
+        <p>Add and animate 3D models directly in your videos.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-snowflake feature-icon"></i>
+        <h3>Special Effects</h3>
+        <p>2000+ effects including snow, rain, fire, and more.</p>
+      </div>
+    </div>
+  </section>
 
-    <footer class="footer">
-        <div class="footer-section">
-            <h4>VidMagic Pro</h4>
-            <p>Transform your video editing experience with AI-powered tools</p>
-        </div>
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <a href="#">About Us</a>
-            <a href="#">Blog</a>
-            <a href="#">Support</a>
-        </div>
-        <div class="footer-section">
-            <h4>Newsletter</h4>
-            <input type="email" placeholder="Enter your email">
-            <button>Subscribe</button>
-        </div>
-    </footer>
+  <footer class="footer">
+    <div class="footer-section">
+      <h4>VidMagic Pro</h4>
+      <p>Transform your video editing experience with AI-powered tools.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <a href="#">About Us</a>
+      <a href="#">Blog</a>
+      <a href="#">Support</a>
+    </div>
+    <div class="footer-section">
+      <h4>Newsletter</h4>
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </footer>
 
-    <script>
-        // Example: Make the button show a popup. Replace with your own logic if needed!
-        document.getElementById('startEditingBtn').onclick = function(e) {
-            e.preventDefault();
-            // Example: open a modal, redirect, etc.
-            alert("Start Editing button clicked!");
-            // To redirect to another page, use:
-            // window.location.href = "editor.html";
-        };
-    </script>
+  <!-- Add three.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+  <script>
+      document.getElementById('removeBgBtn').onclick = async function() {
+  const file = document.getElementById('videoInput').files[0];
+  if (!file) return alert('Please select a video!');
+  const formData = new FormData();
+  formData.append('video', file);
+  const res = await fetch('/api/remove-bg', { method: 'POST', body: formData });
+  if (!res.ok) return alert('Background removal failed');
+  const blob = await res.blob();
+  const output = document.getElementById('outputVideo');
+  output.src = URL.createObjectURL(blob);
+  output.style.display = 'block';
+};
+
+    // Video background removal demo logic
+    document.getElementById('removeBgBtn').onclick = async function() {
+      const fileInput = document.getElementById('videoInput');
+      const statusMsg = document.getElementById('statusMsg');
+      const outputVideo = document.getElementById('outputVideo');
+      const express = require('express');
+const multer = require('multer');
+const fetch = require('node-fetch');
+const FormData = require('form-data');
+const app = express();
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/api/remove-bg', upload.single('video'), async (req, res) => {
+  // Replace with your Unscreen or remove.bg API call
+  const form = new FormData();
+  form.append('video_file', require('fs').createReadStream(req.file.path));
+  // Example for Unscreen:
+  const apiRes = await fetch('https://api.unscreen.com/v1.0/videos', {
+    method: 'POST',
+    headers: { 'X-Api-Key': 'YOUR_UNSCREEN_API_KEY' },
+    body: form
+  });
+  if (!apiRes.ok) return res.status(500).send('Failed to process video');
+  res.set('Content-Type', apiRes.headers.get('content-type'));
+  apiRes.body.pipe(res);
+});
+
+app.listen(3000, () => console.log('Server started'));
+        if (!fileInput.files[0]) {
+        statusMsg.textContent = "Please select a video file first.";
+        return;
+      }
+      statusMsg.textContent = "Processing video (demo: showing original video)...";
+      // DEMO ONLY: Just displays the original video. Replace with API call for real background removal.
+      outputVideo.src = URL.createObjectURL(fileInput.files[0]);
+      outputVideo.style.display = 'block';
+      statusMsg.textContent = "Done! (This is a demo. Integrate your AI API for real background removal.)";
+    };
+
+    // 3D overlay demo logic
+    let scene, camera, renderer, cube;
+    document.getElementById('add3DCubeBtn').onclick = function() {
+      if (!renderer) {
+        // Init three.js scene
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, 400/300, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(400, 300);
+        document.getElementById('threeContainer').appendChild(renderer.domElement);
+
+        // Lighting
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(1, 2, 3);
+        scene.add(light);
+
+        // Cube
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshStandardMaterial({ color: 0x38bdf8 });
+        cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 3;
+        animate();
+      }
+    };
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (cube) {
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+      }
+      renderer.render(scene, camera);
+    }
+  </script>
 </body>
 </html>
