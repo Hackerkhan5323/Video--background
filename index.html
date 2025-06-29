@@ -215,10 +215,40 @@
   <script>
     // Show feature demo
     function showDemo(feature) {
+     function loadGLBModel() {
+  const container = document.getElementById('glb-viewer');
+  if (!container) return;
       const modal = document.getElementById('demoModal');
       const title = document.getElementById('modalTitle');
       const content = document.getElementById('modalContent');
-      
+        const width = container.offsetWidth;
+  const height = container.offsetHeight;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(width, height);
+  container.appendChild(renderer.domElement);
+  // Load GLB model (replace 'model.glb' with your file path)
+  const loader = new THREE.GLTFLoader();
+  loader.load('model.glb', function (gltf) {
+    scene.add(gltf.scene);
+    animate();
+  }, undefined, function (error) {
+    console.error(error);
+  });
+
+  camera.position.z = 2.5;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  }
+}
+  // Add light
+  const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
+  scene.add(light);
+       
       // Set modal content based on selected feature
       switch(feature) {
         case 'bg-removal':
@@ -252,9 +282,11 @@
             </ul>
             <div style="margin-top: 1rem; text-align: center;">
               <img src="https://via.placeholder.com/500x300?text=3D+Integration+Demo" alt="3D Integration Demo" style="max-width: 100%; border-radius: 5px;">
-            </div>
-          `;
-          break;
+              <div id="glb-viewer" style="width: 100%; height: 300px; background: #222; border-radius: 5px;"></div>
+  `;
+  // Add a short delay to ensure the DOM is updated
+  setTimeout(loadGLBModel, 100);
+  break;
           
         case 'fast-processing':
           title.textContent = 'Fast Processing Demo';
